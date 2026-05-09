@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Karthik's Hand at Creations</title>
+    <title>OHSA Injury Analysis Dashboard</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -141,6 +141,10 @@
 
             margin-bottom: 24px;
 
+            background: linear-gradient(135deg, #ffffff, #8ea8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
             animation: fadeUp 1.2s ease;
         }
 
@@ -179,6 +183,10 @@
             cursor: pointer;
         }
 
+        .btn:active {
+            transform: scale(0.96);
+        }
+
         .btn-primary {
             background: linear-gradient(135deg, #4d7cff, #7a5cff);
             color: white;
@@ -202,7 +210,7 @@
             transform: translateY(-3px);
         }
 
-        /* Dashboard Card */
+        /* Dashboard Section */
 
         .dashboard-section {
             padding: 40px 7% 100px;
@@ -224,11 +232,23 @@
             box-shadow: 0px 20px 60px rgba(0,0,0,0.45);
 
             transition: 0.35s ease;
+
+            opacity: 0;
+            transform: translateY(40px);
         }
 
         .dashboard-card:hover {
             transform: translateY(-6px) scale(1.005);
             box-shadow: 0px 30px 70px rgba(0,0,0,0.55);
+        }
+
+        .loading-text {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #9ca3af;
+            font-size: 14px;
+            z-index: 5;
         }
 
         iframe {
@@ -259,6 +279,9 @@
             border: 1px solid rgba(255,255,255,0.06);
 
             transition: 0.3s ease;
+
+            opacity: 0;
+            transform: translateY(40px);
         }
 
         .info-card:hover {
@@ -275,6 +298,12 @@
             color: #a6adbb;
             line-height: 1.8;
             font-size: 16px;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s ease;
         }
 
         /* Footer */
@@ -331,23 +360,29 @@
     <!-- Navigation -->
 
     <nav class="navbar">
-        <div class="logo">Karthik Analytics</div>
+
+        <div class="logo">
+            Karthik Analytics
+        </div>
 
         <div class="nav-links">
-    <a href="#dashboard">Dashboard</a>
 
-    <a href="#overview">Overview</a>
+            <a href="#dashboard">Dashboard</a>
 
-    <a href="https://github.com/karthis2019-max"
-       target="_blank">
-       GitHub
-    </a>
+            <a href="#overview">Overview</a>
 
-    <a href="https://www.linkedin.com/in/karthik-suresh2096/"
-       target="_blank">
-       LinkedIn
-    </a>
-</div>
+            <a href="https://github.com/karthis2019-max"
+               target="_blank">
+               GitHub
+            </a>
+
+            <a href="https://www.linkedin.com/in/karthik-suresh2096/"
+               target="_blank">
+               LinkedIn
+            </a>
+
+        </div>
+
     </nav>
 
     <!-- Hero -->
@@ -359,13 +394,13 @@
         </div>
 
         <h1>
-            BC Housing Market Analysis Dashboard
+            OHSA Injury Analysis Dashboard
         </h1>
 
         <p>
-            An interactive Tableau dashboard exploring housing trends,
-            market movement, and analytical insights using modern
-            data visualization techniques.
+            An interactive Tableau dashboard analyzing workplace
+            injury trends, safety incidents, and occupational health
+            patterns from 2015–2025 using modern data visualization.
         </p>
 
         <div class="hero-buttons">
@@ -375,10 +410,11 @@
             </a>
 
             <a href="https://github.com/karthis2019-max"
-   target="_blank"
-   class="btn btn-secondary">
-    View GitHub Project
-</a>
+               target="_blank"
+               class="btn btn-secondary">
+               View GitHub Project
+            </a>
+
         </div>
 
     </section>
@@ -388,6 +424,10 @@
     <section class="dashboard-section" id="dashboard">
 
         <div class="dashboard-card">
+
+            <div class="loading-text">
+                Loading Interactive Dashboard...
+            </div>
 
             <iframe
                 src="https://public.tableau.com/views/OHSAInjury2015-2025/Dashboard12?:showVizHome=no">
@@ -409,9 +449,9 @@
 
                 <p>
                     This interactive dashboard was developed using Tableau
-                    to analyze long-term trends, identify patterns,
-                    and present data-driven insights through a modern
-                    analytical interface.
+                    to analyze workplace safety trends, identify injury
+                    patterns, and present occupational health insights
+                    through modern analytical visualizations.
                 </p>
 
             </div>
@@ -433,9 +473,9 @@
                 <h3>Key Focus Areas</h3>
 
                 <p>
-                    Trend analysis, KPI visualization, user interaction,
-                    and responsive dashboard presentation designed
-                    for portfolio and recruiter visibility.
+                    Injury trend analysis, KPI visualization, user
+                    interaction, and responsive dashboard presentation
+                    designed for portfolio and recruiter visibility.
                 </p>
 
             </div>
@@ -449,6 +489,30 @@
     <footer>
         Created by Karthik Suresh • 2026
     </footer>
+
+    <!-- Scroll Reveal Animation -->
+
+    <script>
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+
+            });
+
+        });
+
+        const hiddenElements = document.querySelectorAll(
+            '.info-card, .dashboard-card'
+        );
+
+        hiddenElements.forEach((el) => observer.observe(el));
+
+    </script>
 
 </body>
 
